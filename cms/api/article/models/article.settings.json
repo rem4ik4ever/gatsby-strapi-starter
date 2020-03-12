@@ -12,22 +12,24 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true,
-      "unique": true,
-      "minLength": 10
+      "minLength": 8,
+      "required": true
     },
     "content": {
-      "type": "richtext"
-    },
-    "image": {
-      "collection": "file",
-      "via": "related",
-      "plugin": "upload",
-      "required": false
+      "type": "richtext",
+      "required": true,
+      "minLength": 12
     },
     "author": {
       "plugin": "users-permissions",
-      "model": "user"
+      "model": "user",
+      "via": "articles"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": true
     }
   }
 }

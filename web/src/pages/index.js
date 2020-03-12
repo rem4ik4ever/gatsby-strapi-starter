@@ -17,13 +17,7 @@ const IndexPage = ({ data }) => (
           <h2>
             <Link to={`/${article.node.id}`}>{article.node.title}</Link>
           </h2>
-          <Img
-            fixed={{
-              src: `http://localhost:1337${article.node.image[0].url}`,
-              width: 200,
-              height: 125,
-            }}
-          />
+          <Img fixed={article.node.image.childImageSharp.fixed} />
           <p>{article.node.content}</p>
         </li>
       ))}
@@ -43,7 +37,13 @@ export const pageQuery = graphql`
           title
           content
           image {
-            url
+            childImageSharp {
+              fixed(width: 200, height: 125) {
+                src
+                width
+                height
+              }
+            }
           }
         }
       }
